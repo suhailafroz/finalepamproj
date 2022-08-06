@@ -1,0 +1,70 @@
+<!-- <button mat-raised-button color="primary" (click)="showStatistics()">
+    {{isShow?"Show Statistics":"Hide Statistics"}}
+</button>
+
+<div [hidden]=isShow [innerHTML]=showStats></div> -->
+
+
+
+<!--<div [hidden]="isShow" class="container">
+    <div class="data">
+        <div class="statisticsdata" [innerHTML]="statisticsData"></div>
+        <div class="gradedata" [innerHTML]="gradeData"></div>
+    </div>
+    <div class="chart">
+        <canvas class="childchart" id="piechart" baseChart [type]="'pie'" [datasets]="pieChartData"
+            [labels]="pieChartLabels" [options]="pieChartOptions" [legend]="true">
+        </canvas>
+
+        <canvas class="childchart" id="barchart" baseChart [datasets]="barChartData" [labels]="barChartLabels"
+            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [type]="barChartType">
+        </canvas>
+    </div>
+
+</div> -->
+<div style="display:flex; justify-content: space-between;">
+    <button id="statistics" mat-raised-button color="primary" (click)="showStatistics()">
+        {{isShow ? "Show Statistics" : "Hide Statistics"}}
+    </button>
+    <!-- <button mat-button mat-dialog-close>
+        <mat-icon>cancel</mat-icon>
+    </button> -->
+</div>
+
+<div class="container" [hidden]="isShow">
+
+    <mat-tab-group>
+        <mat-tab label="Grade Data">
+            <div [innerHTML]="gradeData"></div>
+        </mat-tab>
+        <mat-tab label="PieChart">
+            <div style="display:flex; justify-content: space-evenly;">
+                <div style="width:200px;height:200px" class="chart">
+                    <canvas class="childchart" id="piechart" baseChart [type]="'pie'" [datasets]="pieChartData"
+                        [labels]="pieChartLabels" [options]="pieChartOptions" [legend]="true">
+                    </canvas>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <p [innerHTML]="statisticsData"></p>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="GradeRange">
+            <div style="display:flex; justify-content: space-evenly;align-items: center;">
+                <div style="width:400px;height:200px" class="chart">
+                    <canvas class="childchart" id="barchart" baseChart [datasets]="barChartData"
+                        [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins"
+                        [legend]="barChartLegend" [type]="barChartType">
+                    </canvas>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <p [innerHTML]="finalgrades"></p>
+                </div>
+            </div>
+
+        </mat-tab>
+        <!-- <mat-tab label="Result Data">
+            <div [innerHTML]=" statisticsData"></div>
+        </mat-tab> -->
+    </mat-tab-group>
+</div>

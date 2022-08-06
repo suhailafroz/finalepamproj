@@ -1,0 +1,99 @@
+<app-header></app-header>
+<table style="border:0px">
+    <tr>
+        <td>
+            <div class="filterOptions">
+                <div>
+                    <button mat-raised-button color="primary" (click)="displayAll()">ALL</button>
+                    <button mat-raised-button (click)="displayPassed()"
+                        style='color: #fff; background:green;'>PASSED</button>
+                    <button mat-raised-button color="warn" (click)="displayFailed()">FAILED</button>
+                </div>
+                <div>
+                    <button mat-raised-button (click)="sortByName()">
+                        {{isAscendingSort ? 'Sort (A - Z)': 'Sort (Z - A)'}}
+                    </button>
+                    <button mat-raised-button (click)="sortByGrade()">
+                        {{gradeDirection ? 'Sort (1 - 10)' : 'Sort(10 - 1)'}}
+                    </button>
+                </div>
+                <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Search by Name</mat-label>
+                        <input matInput type="text" [(ngModel)]="searchTerm">
+                    </mat-form-field>
+
+                    <!-- <input type="text" placeholder="Search for Students" [(ngModel)]="searchTerm"> -->
+                </div>
+            </div>
+        </td>
+        <td>
+            <!-- <button id="statistics" mat-mini-fab color="primary" (click)="showStatistics()">
+                <mat-icon>analytics</mat-icon>
+            </button> -->
+            <!-- <app-statistics></app-statistics> -->
+        </td>
+    </tr>
+</table>
+<!-- <br /> -->
+<div class="tableSizeControl">
+    <select name="" (change)="onTableSizeChange($event)" id="sizeSelect">
+        <option *ngFor="let size of tableSizes">
+            {{size}}
+        </option>
+    </select>
+</div>
+<div style="height:300px;overflow-y:scroll;border: 1px solid">
+    <table style="border:0px">
+        <thead>
+            <tr class="mat-elevation-z1">
+                <!-- <td>S.No</td> -->
+                <th>Name</th>
+                <th>TicketNumber</th>
+                <th>Ticket Topic</th>
+                <th>Exam Grade</th>
+                <th>Rating Grade</th>
+                <th>Final Grade</th>
+                <th>Status</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let student of students|searchFilter:searchTerm;let i=index"
+                [ngClass]="{'selected':i == selectedRow}" (click)="setClickedRow(i)"> 
+            
+            -->
+            <tr class="mat-elevation-z1" *ngFor="let student of students|studentSearchFilter:searchTerm | paginate: {itemsPerPage: tableSize,
+                currentPage: page,
+            totalItems: count};let i=index;" (click)="ClickedRow($event,student)" [class.active]="student.highlighted">
+                <!-- <td>{{i+1}}</td> -->
+                <td>{{student.highlighted?(student.name|uppercase):(student.name)}}</td>
+                <td>{{student.ticketNumber}}</td>
+                <td>{{student.ticketTopic}}</td>
+                <td>{{student.examGrade}}</td>
+                <td>{{student.ratingGrade}}</td>
+                <td>{{student.finalGrade | number:'1.0-3'}}</td>
+                <td>{{student.status}}</td>
+                <td>
+                    <button (click)="showDialog(i)" mat-mini-fab color="primary"
+                        aria-label="Example icon button with a menu icon">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+                    <!-- <button mat-raised-button color="accent" (click)="showDialog(i)">Details</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+
+
+</div>
+<div style="padding: 5px;">
+    <app-statistics></app-statistics>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#ee24e5" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>

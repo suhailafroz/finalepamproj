@@ -1,0 +1,61 @@
+<!-- <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</div> -->
+<h1 mat-dialog-title>
+    Details of {{stuDetails.name}}
+</h1>
+<mat-dialog-content>
+    <div style='display: flex; justify-content:space-between;'>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        Name of the Student<br />
+                        <strong>{{stuDetails.name}}</strong>
+                    </td>
+                    <td>
+                        Ticket Number<br />
+                        <strong>{{stuDetails.ticketNumber}}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ticket Topic<br />
+                        <strong>{{stuDetails.ticketTopic}}</strong>
+                    </td>
+                    <td>
+                        Exam Grade<br />
+                        <strong>{{stuDetails.examGrade}}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Rating Grade<br />
+                        <strong>{{stuDetails.ratingGrade}}</strong>
+                    </td>
+                    <td>
+                        Final Grade<br />
+                        <strong>{{stuDetails.finalGrade}}</strong>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Status<br />
+                        <strong>{{stuDetails.status}}</strong>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</mat-dialog-content>
+<div>
+    <button mat-button mat-dialog-close style="align:right">
+        <!-- <mat-icon>cancel</mat-icon> -->
+        Close
+    </button>
+</div>

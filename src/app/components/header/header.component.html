@@ -1,0 +1,23 @@
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngFor="let slide of slides">
+    <ng-template carouselSlide [id]="slide.id" class="headInfo">
+      <!-- <img [src]="slide.img"> -->
+      <div class="container">
+        <div class="left">
+          <p><strong>{{slide.examTitle}}</strong></p>
+          <p>{{slide.examDate |date}}</p>
+          <p>{{slide.semester}}</p>
+        </div>
+        <div class="middle">
+          <h1 style="letter-spacing: 2px;">{{slide.title | uppercase}}</h1>
+        </div>
+        <div class="right">
+          <p><strong>{{slide.pName}}</strong></p>
+          <p>{{slide.cName}}</p>
+          <p>{{slide.dept}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+
+</owl-carousel-o>

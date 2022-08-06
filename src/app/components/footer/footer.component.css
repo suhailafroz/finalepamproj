@@ -1,0 +1,18 @@
+footer {
+    /* position: fixed; */
+    bottom: 0;
+    /* margin-top: 10px; */
+    width: 100%;
+}
+
+.spacer {
+    height: 40px;
+    background: rgb(64, 57, 243);
+    color: white;
+    text-align: center;
+    box-shadow: 10px;
+}
+
+h3 {
+    line-height: 40px;
+}
